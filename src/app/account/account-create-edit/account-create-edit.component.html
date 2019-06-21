@@ -1,0 +1,44 @@
+<div class="container">
+  <h3>{{ submitText }}</h3>
+  <hr>
+  <form name="form" (ngSubmit)="onSubmit()" #accountForm="ngForm">
+    
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="accountNumber">Broj Računa</label>
+            <input #accountNumber="ngModel" 
+                    type="text" 
+                    class="form-control" 
+                    id="accountNumber" 
+                    name="accountNumber" 
+                    [(ngModel)]="account.AccountNumber" placeholder=" Unesite broj računa...." 
+                    required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="bankName">Banka</label>
+              <input #bankName="ngModel" 
+                      type="text" 
+                      class="form-control" 
+                      id="bankName" 
+                      name="bankName" 
+                      [(ngModel)]="account.BankName" 
+                      placeholder=" Unesite naziv banke...." 
+                      required>
+            </div>
+      </div>
+    </div>
+   
+    <hr>
+
+    <div>
+        <button type="submit" class="btn btn-primary" [disabled]="!communityForm.valid"><span class="glyphicon glyphicon-save"></span> Sačuvaj</button>
+    </div>
+  </form>
+
+</div>
+
