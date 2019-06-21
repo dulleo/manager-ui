@@ -10,7 +10,6 @@
             <tr>
               <th>Broj Računa</th>
               <th>Banka</th>
-              <th>Satatus</th>
               <th>Akcija</th>
               <th>Detalji</th>
             </tr>
@@ -19,7 +18,6 @@
             <tr *ngFor="let account of accounts">
               <td class="col-md-5">{{ account.AccountNumber }}</td>
               <td class="col-md-2">{{ account.BankName }}</td>
-              <td class="col-md-1">{{ account.Status }}</td>
               <td class="col-md-2 action">
                 <div class="btn-toolbar">
                   <button type="button" class="btn btn-success btn-xs" (click)="updateAccount(account)">Izmeni</button>
