@@ -1,0 +1,55 @@
+<div class="container">
+  <h3>{{ submitText }}</h3>
+  <hr>
+  <form name="form" (ngSubmit)="onSubmit()" #communityForm="ngForm">
+    <div class="form-group">
+      <label for="communityName">Naziv</label>
+      <input #communityName="ngModel" 
+              type="text" 
+              class="form-control" 
+              id="communityName" 
+              name="communityName" 
+              [(ngModel)]="community.Name" placeholder=" Unesite naziv stambene zajednice...." 
+              required>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="pib">PIB</label>
+              <input #pib="ngModel" 
+                      type="number" 
+                      class="form-control" 
+                      id="pib" 
+                      name="pib" 
+                      [(ngModel)]="community.Pib" 
+                      placeholder=" Unesite PIB...." 
+                      required>
+            </div>
+      </div>
+
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="identificationNumber">Matični Broj</label>
+              <input #pib="ngModel" 
+                      type="number" 
+                      class="form-control" 
+                      id="identificationNumber" 
+                      name="identificationNumber" 
+                      [(ngModel)]="community.IdentificationNumber" 
+                      placeholder=" Unesite matični broj stambene zajednice...." 
+                      required>
+            </div>
+      </div>
+
+
+    </div>
+   
+    <hr>
+
+    <div>
+        <button type="submit" class="btn btn-primary" [disabled]="!communityForm.valid"><span class="glyphicon glyphicon-save"></span> Sačuvaj</button>
+    </div>
+  </form>
+
+</div>
