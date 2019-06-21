@@ -44,7 +44,6 @@ export class AccountCreateEditComponent implements OnInit {
       });
     } else {
       console.log("Create account...");
-      this.account.Status = Status.ACTIVE;        //new account is active
       this.dataService.createAccount(this.community.Id, this.account).subscribe(resp => {
         if(resp.ok) {
           this.router.navigate(['accounts']);
