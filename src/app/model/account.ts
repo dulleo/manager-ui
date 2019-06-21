@@ -30,20 +30,11 @@ export class BankAccount implements Serializable<BankAccount> {
     public set AccountNumber(accountNumber:string) {
         this.accountNumber = accountNumber;
     }
-    
-    public get Status() : Status {
-        return this.status;
-    }
-
-    public set Status(status:Status) {
-        this.status = status;
-    }
 
     deserialize(json: any) {
         this.id = json.id;
         this.bankName = json.bankName;
         this.accountNumber = json.accountNumber;
-        this.status = json.status;
         return this;
     }
 
