@@ -45,5 +45,11 @@ export class AccountListComponent implements OnInit {
     this.router.navigate(['accounts/create-edit']);
   }
 
+  updateAccount(account: BankAccount) {
+    console.log("Update account id: " + account.Id);
+    this.messageService.selectAccount(account);
+    this.router.navigate(['accounts/create-edit']);
+  }
+
 
 }
