@@ -27,8 +27,8 @@ export class AccountListComponent implements OnInit {
     this.getAllAccounts(this.community.Id);
   }
 
-  getAllAccounts(id:number) {
-    this.dataService.getAllAccounts(id).subscribe(resp => {
+  getAllAccounts(communityId:number) {
+    this.dataService.getAllAccounts(communityId).subscribe(resp => {
       if(resp.ok) {
         console.log("getAllCommunities response received....");
         this.accounts = new BankAccount().deserializeList(resp.body);
