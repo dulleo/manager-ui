@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from './service/message.service';
 import { AccountListComponent } from './account/account-list/account-list.component';
 import { AccountCreateEditComponent } from './account/account-create-edit/account-create-edit.component';
+import { DoorwayListComponent } from './doorway/doorway-list/doorway-list.component';
+import { DoorwayCreateEditComponent } from './doorway/doorway-create-edit/doorway-create-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AccountCreateEditComponent } from './account/account-create-edit/accoun
     CommunityListComponent,
     CommunityCreateEditComponent,
     AccountListComponent,
-    AccountCreateEditComponent
+    AccountCreateEditComponent,
+    DoorwayListComponent,
+    DoorwayCreateEditComponent
   ],
   imports: [
     BrowserModule,
