@@ -16,6 +16,7 @@ export class AccountListComponent implements OnInit {
   selectedAccount: BankAccount;
   accounts: Array<BankAccount> = [];
   accountExists: Boolean = false;
+  display='none';
 
   constructor(private dataService: DataService, 
               private router: Router, 
@@ -33,6 +34,8 @@ export class AccountListComponent implements OnInit {
         this.accounts = new BankAccount().deserializeList(resp.body);
         if(this.accounts.length > 0) {
           this.accountExists = true;
+        } else {
+          this.accountExists = false;
         }
       }
     });
@@ -51,5 +54,23 @@ export class AccountListComponent implements OnInit {
     this.router.navigate(['accounts/create-edit']);
   }
 
+  openModal(account: BankAccount){
+    this.display='block';
+    this.selectedAccount = account; 
+  }
 
+  onCloseHandled(){
+    this.display='none';
+    this.selectedAccount = null; 
+  }
+
+  onDeleteHandled() {
+    this.dataService.deleteAccount(this.community.Id, this.selectedAccount.Id).subscribe(resp => {
+        if(resp.ok) {
+            //alert("Test " + this.selectedTestDTO.Name + " is successfully deleted!");
+            this.getAllAccounts(this.community.Id);
+            this.onCloseHandled();
+        }
+      });
+  }
 }
