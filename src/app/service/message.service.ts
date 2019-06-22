@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Community } from '../model/community';
 import { BankAccount } from '../model/account';
+import { Doorway } from '../model/doorway';
 
 @Injectable()
 export class MessageService {
@@ -12,6 +13,9 @@ export class MessageService {
     private accountMessageSource = new BehaviorSubject(new BankAccount);
     selectedAccount = this.accountMessageSource.asObservable();
 
+    private doorwayMessageSource = new BehaviorSubject(new Doorway);
+    selectedDoorway = this.doorwayMessageSource.asObservable();
+
     constructor() {}
 
     selectCommunity(community: Community) {
@@ -20,6 +24,10 @@ export class MessageService {
 
     selectAccount(account: BankAccount) {
         this.accountMessageSource.next(account);
+    }
+
+    selectDoorway(doorway: Doorway) {
+        this.doorwayMessageSource.next(doorway);
     }
 
 }
