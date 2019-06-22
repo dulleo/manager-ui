@@ -1,5 +1,3 @@
-import { Status } from './status';
-
 interface Serializable<T> {
     deserialize(input: Object): T;
 }
@@ -9,7 +7,6 @@ export class BankAccount implements Serializable<BankAccount> {
     private id: number;
     private bankName: string;
     private accountNumber: string;
-    private status: Status;
 
     public get Id(): number {
         return this.id;
