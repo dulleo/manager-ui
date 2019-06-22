@@ -75,4 +75,10 @@ export class CommunityListComponent implements OnInit {
     this.router.navigate(['accounts']);
   }
 
+  getDoorways(community: Community) {
+    console.log("Get doorway is called....");
+    this.messageService.selectCommunity(community);
+    this.router.navigate(['doorways']);
+  }
+
 }
