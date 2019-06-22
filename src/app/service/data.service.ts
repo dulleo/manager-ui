@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Community } from '../model/community';
 import { BankAccount } from '../model/account';
+import { Doorway } from '../model/doorway';
 
 @Injectable()
 export class DataService {
@@ -46,10 +47,10 @@ export class DataService {
         });
     }
 
-    deleteCommunity(id:number) {
-        console.log("[Service] --> Delete community id: " + id);
+    deleteCommunity(communityId:number) {
+        console.log("[Service] --> Delete community id: " + communityId);
         let deleteUrl: string;
-        deleteUrl = this.baseUrl + '/communities/' + id;
+        deleteUrl = this.baseUrl + '/communities/' + communityId;
         return this.httpClient.delete(deleteUrl, {
             headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
             observe: 'response'
@@ -59,6 +60,7 @@ export class DataService {
     //************************************************************************************
     //                                      ACCOUNT
     //************************************************************************************
+    
     getAllAccounts(id:number) {
         console.log("[Service] --> Get all accounts for community id: " + id);
         let url: string;
@@ -69,34 +71,82 @@ export class DataService {
         });
     }
 
-    createAccount(id: number, account: BankAccount) {
-        console.log("[Service] --> Create acount for community id: " + id);
+    createAccount(communityId: number, account: BankAccount) {
+        console.log("[Service] --> Create acount for community id: " + communityId);
         const body = JSON.stringify(account);
         console.log("Body: " + body);
         let createUrl: string;
-        createUrl = this.baseUrl + '/communities/' + id + '/accounts';
+        createUrl = this.baseUrl + '/communities/' + communityId + '/accounts';
         return this.httpClient.post(createUrl, body, {
             headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
             observe: 'response'
         });
     }
 
-    updateAccount(id:number, account:BankAccount) {
+    updateAccount(communityId:number, account:BankAccount) {
         console.log("[Service] --> Update account id: " + account.Id);
         const body = JSON.stringify(account);
         console.log("Body: " + body);
         let updateUrl: string;
-        updateUrl = this.baseUrl + '/communities/' + id + '/accounts/' + account.Id;
+        updateUrl = this.baseUrl + '/communities/' + communityId + '/accounts/' + account.Id;
         return this.httpClient.put(updateUrl, body, {
             headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
             observe: 'response'
         });
     }
 
-    deleteAccount(id:number, accountId:number) {
+    deleteAccount(communityId:number, accountId:number) {
         console.log("[Service] --> Delete account id: " + accountId);
         let deleteUrl: string;
-        deleteUrl = this.baseUrl + '/communities/' + id + '/accounts/' + accountId;
+        deleteUrl = this.baseUrl + '/communities/' + communityId + '/accounts/' + accountId;
+        return this.httpClient.delete(deleteUrl, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
+            observe: 'response'
+        });
+    }
+
+    //************************************************************************************
+    //                                      DOORWAY
+    //************************************************************************************
+
+    getAllDoorways(communityId: number) {
+        console.log("[Service] --> Get all doorways for community id: " + communityId);
+        let url: string;
+        url = this.baseUrl + '/communities/' + communityId + '/doorways';
+        return this.httpClient.get(url, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
+            observe: 'response'
+        });
+    }
+
+    createDoorway(communityId: number, doorway: Doorway) {
+        console.log("[Service] --> Create doorway for community id: " + communityId);
+        const body = JSON.stringify(doorway);
+        console.log("Body: " + body);
+        let createUrl: string;
+        createUrl = this.baseUrl + '/communities/' + communityId + '/doorways';
+        return this.httpClient.post(createUrl, body, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
+            observe: 'response'
+        });
+    }
+
+    updateDoorway(communityId:number, doorway: Doorway) {
+        console.log("[Service] --> Update doorway id: " + doorway.Id);
+        const body = JSON.stringify(doorway);
+        console.log("Body: " + body);
+        let updateUrl: string;
+        updateUrl = this.baseUrl + '/communities/' + communityId + '/doorways/' + doorway.Id;
+        return this.httpClient.put(updateUrl, body, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
+            observe: 'response'
+        });
+    }
+
+    deleteDoorway(communityId:number, doorwayId:number) {
+        console.log("[Service] --> Delete doorway id: " + doorwayId);
+        let deleteUrl: string;
+        deleteUrl = this.baseUrl + '/communities/' + communityId + '/doorways/' + doorwayId;
         return this.httpClient.delete(deleteUrl, {
             headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
             observe: 'response'
