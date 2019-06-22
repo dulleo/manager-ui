@@ -1,0 +1,31 @@
+<div class="container">
+  <h3>{{ submitText }}</h3>
+  <hr>
+  <form name="form" (ngSubmit)="onSubmit()" #doorwayForm="ngForm">
+    
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="doorwayNumber">Broj Ulaza</label>
+            <input #doorwayNumber="ngModel" 
+                    type="text" 
+                    class="form-control" 
+                    id="doorwayNumber" 
+                    name="doorwayNumber" 
+                    [(ngModel)]="doorway.Number" placeholder=" Unesite broj ulaza...." 
+                    required>
+        </div>
+      </div>
+    </div>
+   
+    <hr>
+
+    <div>
+        <button type="submit" class="btn btn-primary" [disabled]="!doorwayForm.valid"><span class="glyphicon glyphicon-save"></span> Sačuvaj</button>
+    </div>
+  </form>
+
+</div>
+
+
