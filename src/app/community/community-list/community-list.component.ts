@@ -30,6 +30,8 @@ export class CommunityListComponent implements OnInit {
         this.communities = new Community().deserializeList(resp.body);
         if(this.communities.length > 0) {
           this.communityExists = true;
+        } else {
+          this.communityExists = false;
         }
       }
     })
