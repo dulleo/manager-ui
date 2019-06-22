@@ -13,6 +13,10 @@ export class DataService {
 
     }
 
+    //************************************************************************************
+    //                                      COMMUNITY
+    //************************************************************************************
+
     getAllCommunities() {
         console.log("[Service] --> getAllCommunities");
         return this.httpClient.get(this.baseUrl + '/communities', {
@@ -53,7 +57,7 @@ export class DataService {
     }
 
     //************************************************************************************
-    //                                      ACCOUNTS
+    //                                      ACCOUNT
     //************************************************************************************
     getAllAccounts(id:number) {
         console.log("[Service] --> Get all accounts for community id: " + id);
@@ -84,6 +88,16 @@ export class DataService {
         let updateUrl: string;
         updateUrl = this.baseUrl + '/communities/' + id + '/accounts/' + account.Id;
         return this.httpClient.put(updateUrl, body, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
+            observe: 'response'
+        });
+    }
+
+    deleteAccount(id:number, accountId:number) {
+        console.log("[Service] --> Delete account id: " + accountId);
+        let deleteUrl: string;
+        deleteUrl = this.baseUrl + '/communities/' + id + '/accounts/' + accountId;
+        return this.httpClient.delete(deleteUrl, {
             headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
             observe: 'response'
         });
