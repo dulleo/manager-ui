@@ -36,7 +36,7 @@ export class AccountCreateEditComponent implements OnInit {
 
   onSubmit() {
     if(this.isEditMode) {
-      console.log("Edit account id: " + this.community.Id);
+      console.log("Edit account id: " + this.account.Id);
       this.dataService.updateAccount(this.community.Id, this.account).subscribe(resp => {
         if(resp.ok) {
           this.router.navigate(['accounts']);
