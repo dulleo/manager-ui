@@ -54,23 +54,25 @@ export class AccountListComponent implements OnInit {
     this.router.navigate(['accounts/create-edit']);
   }
 
-  openModal(account: BankAccount){
-    this.display='block';
-    this.selectedAccount = account; 
+  selectAccount(account: BankAccount) {
+    this.selectedAccount = account;
   }
 
-  onCloseHandled(){
-    this.display='none';
-    this.selectedAccount = null; 
+  modalCancel() {
+    this.selectedAccount = null;
   }
 
-  onDeleteHandled() {
+  deleteAccount() {
     this.dataService.deleteAccount(this.community.Id, this.selectedAccount.Id).subscribe(resp => {
         if(resp.ok) {
             //alert("Test " + this.selectedTestDTO.Name + " is successfully deleted!");
             this.getAllAccounts(this.community.Id);
-            this.onCloseHandled();
+            this.modalCancel();
         }
       });
+  }
+
+  back() {
+    this.router.navigate(['communities']);
   }
 }
