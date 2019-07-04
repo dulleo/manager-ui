@@ -1,0 +1,77 @@
+<div class="container">
+  <h2>Stambena Zajednica: {{ selectedCommunity.Name }}</h2>  
+  <h2>Ulaz: {{ selectedDoorway.Number }}</h2>
+   
+    <div *ngIf="apartmentExists" class="panel-group" id="apartmentsPanelGroup">
+      <hr/>
+      <div *ngFor="let apartment of apartments; index as i" class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#apartmentsPanelGroup" href="#collapse{{i}}">Stan: {{ apartment.ApartmentNumber }}</a>
+          </h4>
+        </div>
+        <div id="collapse{{i}}" class="panel-collapse collapse">
+          <div class="panel-body">
+            <app-apartment-owner-list [apartment]='apartment'></app-apartment-owner-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <hr/>
+    <div class="btn-toolbar">
+      <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#createApartmentModal"><span class="glyphicon glyphicon-save"></span> Novi Stan</button>
+      <button type="button" class="btn btn-primary btn-md" (click)="back()"><span class="glyphicon glyphicon-share-alt"></span> Nazad</button>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="createApartmentModal" aria-hidden="true" data-backdrop="static"  data-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">KREIRANJE STANA</h4>
+            </div>
+            <div class="modal-body">
+                
+              
+              <form name="form" (ngSubmit)="onSubmit()" #apartmentForm="ngForm">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="apartmentNumber">Broj Stana</label>
+                            <input #apartmentNumber="ngModel" 
+                                    type="number"
+                                    min="1" 
+                                    max="100"
+                                    class="form-control" 
+                                    id="apartmentNumber" 
+                                    name="apartmentNumber" 
+                                    [(ngModel)]="selectedApartment.apartmentNumber" placeholder=" Unesite broj stana...." 
+                                    required>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <hr>
+                
+                    <div class="btn-toolbar">
+                        <button type="submit" class="btn btn-primary btn-md" [disabled]="!apartmentForm.valid"><span class="glyphicon glyphicon-save"></span> Sačuvaj</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Otkaži</button>
+                    </div>
+                  </form>
+            </div>
+           
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal !-->
+  
+</div>
+  
+<div *ngIf="!apartmentExists" class="container">
+  <hr/>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Info</div>
+    <div class="panel-body">Nema kreiranih stanova!</div>
+  </div>
+</div>
+  
