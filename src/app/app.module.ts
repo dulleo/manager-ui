@@ -14,6 +14,10 @@ import { AccountListComponent } from './account/account-list/account-list.compon
 import { AccountCreateEditComponent } from './account/account-create-edit/account-create-edit.component';
 import { DoorwayListComponent } from './doorway/doorway-list/doorway-list.component';
 import { DoorwayCreateEditComponent } from './doorway/doorway-create-edit/doorway-create-edit.component';
+import { OwnerListComponent } from './owner/owner-list/owner-list.component';
+import { OwnerCreateEditComponent } from './owner/owner-create-edit/owner-create-edit.component';
+import { ApartmentListComponent } from './apartment/apartment-list/apartment-list.component';
+import { ApartmentOwnerListComponent } from './apartment-owner/apartment-owner-list/apartment-owner-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { DoorwayCreateEditComponent } from './doorway/doorway-create-edit/doorwa
     AccountListComponent,
     AccountCreateEditComponent,
     DoorwayListComponent,
-    DoorwayCreateEditComponent
+    DoorwayCreateEditComponent,
+    OwnerListComponent,
+    OwnerCreateEditComponent,
+    ApartmentListComponent,
+    ApartmentOwnerListComponent
   ],
   imports: [
     BrowserModule,
