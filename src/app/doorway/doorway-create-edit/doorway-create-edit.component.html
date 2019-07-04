@@ -21,8 +21,9 @@
    
     <hr>
 
-    <div>
-        <button type="submit" class="btn btn-primary" [disabled]="!doorwayForm.valid"><span class="glyphicon glyphicon-save"></span> Sačuvaj</button>
+    <div class="btn-toolbar">
+        <button type="submit" class="btn btn-primary btn-md" [disabled]="!doorwayForm.valid"><span class="glyphicon glyphicon-save"></span> Sačuvaj</button>
+        <button type="button" class="btn btn-primary btn-md" (click)="back()"><span class="glyphicon glyphicon-share-alt"></span> Nazad</button>
     </div>
   </form>
 
