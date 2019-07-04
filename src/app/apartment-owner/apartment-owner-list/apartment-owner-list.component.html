@@ -1,0 +1,28 @@
+
+  <div>
+    <div *ngIf="ownerExists;then noOwnerExists">
+    
+          <ul class="list-group" >
+              <li *ngFor="let apartmentOwner of apartmentOwners" class="list-group-item"> {{ apartmentOwner.Owner.FirstName }} {{ apartmentOwner.Owner.LastName }} <span class="badge">12</span></li>
+          </ul>
+    </div>
+
+    <ng-template #noOwnerExists>
+
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> Stan nema vlasnika!
+          </div>
+  
+    </ng-template>
+
+    <hr>
+
+    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#createApartmentModal"><span class="glyphicon glyphicon-save"></span> Poveži Stan I Vlasnika</button>
+  
+</div>
+ 
+
+  
+
+ 
+  
