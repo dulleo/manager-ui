@@ -5,7 +5,7 @@
         <h4>Stambena Zajednica: {{ selectedCommunity.Name }} </h4>
       </div>
       <div class="panel-body">
-        <table class="table table-striped">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th>Broj Ulaza</th>
@@ -19,7 +19,7 @@
               <td class="col-md-2 action">
                 <div class="btn-toolbar">
                   <button type="button" class="btn btn-success btn-xs" (click)="updateDoorway(doorway)">Izmeni</button>
-                  <button type="button" class="btn btn-danger btn-xs" (click)="openModal(doorway)">Obriši</button>
+                  <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteDoorwayModal" (click)="selectDoorway(doorway)">Obriši</button>
                 </div>
               </td>
               <td class="col-md-1 details">
@@ -34,31 +34,30 @@
     </div>
   </div>
 
-  <div class="backdrop" [ngStyle]="{'display':display}"></div>
-    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!--<button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>-->
-                        <h4 class="modal-title">Obriši Ulaz</h4>
-                </div>
-                <div *ngIf="selectedDoorway" class="modal-body">
-                    <p>Ova akcija će obrisati ulaz {{ selectedDoorway.Number }}!</p>
-                    <p>Da li ste sigurni?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" (click)="onDeleteHandled()">Obriši</button>
-                    <button type="button" class="btn btn-primary" (click)="onCloseHandled()">Otkaži</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="deleteDoorwayModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="modalCancel()">&times;</button>
+          <h4 class="modal-title">BRISANJE ULAZA</h4>
+        </div>
+        <div *ngIf="selectedDoorway" class="modal-body">
+          <p>Ova akcija će obrisati ulaz: {{ selectedDoorway.Number }}</p>
+          <p>Da li ste sigurni?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="deleteDoorway()" data-dismiss="modal">Obriši</button>
+          <button type="button" class="btn btn-primary" (click)="modalCancel()" data-dismiss="modal">Otkaži</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
   </div><!-- /.modal !-->
   
 
   <hr />
-  <div>
-    <button type="button" class="btn btn-primary" (click)="createDoorway()"><span
-        class="glyphicon glyphicon-save"></span> Novi Ulaz</button>
+  <div class="btn-toolbar">
+    <button type="button" class="btn btn-primary btn-md" (click)="createDoorway()"><span class="glyphicon glyphicon-save"></span> Novi Ulaz</button>
+    <button type="button" class="btn btn-primary btn-md" (click)="back()"><span class="glyphicon glyphicon-share-alt"></span> Nazad</button>
   </div>
 </div>
 
