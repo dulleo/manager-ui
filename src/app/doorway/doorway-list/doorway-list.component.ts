@@ -16,7 +16,6 @@ export class DoorwayListComponent implements OnInit {
   selectedDoorway: Doorway;
   doorways: Array<Doorway> = [];
   doorwayExists: Boolean = false;
-  display='none';
 
   constructor(private dataService: DataService, 
     private router: Router, 
@@ -54,24 +53,32 @@ export class DoorwayListComponent implements OnInit {
     this.router.navigate(['doorways/create-edit']);
   }
 
-  openModal(doorway: Doorway){
-    this.display='block';
-    this.selectedDoorway = doorway; 
+  selectDoorway(doorway: Doorway) {
+    this.selectedDoorway = doorway;
   }
 
-  onCloseHandled(){
-    this.display='none';
-    this.selectedDoorway = null; 
+  modalCancel() {
+    this.selectedDoorway = null;
   }
 
-  onDeleteHandled() {
+  deleteDoorway() {
     this.dataService.deleteDoorway(this.selectedCommunity.Id, this.selectedDoorway.Id).subscribe(resp => {
         if(resp.ok) {
             //alert("Test " + this.selectedTestDTO.Name + " is successfully deleted!");
             this.getAllDoorways(this.selectedCommunity.Id);
-            this.onCloseHandled();
+            this.modalCancel();
         }
       });
+  }
+
+  getApartmans(doorway: Doorway) {
+    this.messageService.selectDoorway(doorway);
+    this.messageService.selectCommunity(this.selectedCommunity);  //TODO: Do we need this info in the apartment controller?????
+    this.router.navigate(['apartments']);
+  }
+
+  back() {
+    this.router.navigate(['communities']);
   }
 
 }
