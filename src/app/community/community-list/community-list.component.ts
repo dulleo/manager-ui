@@ -14,7 +14,6 @@ export class CommunityListComponent implements OnInit {
 
   communities: Array<Community>;
   communityExists: Boolean = false;
-  display='none';
   selectedCommunity: Community;
   
   constructor(private dataService: DataService, private router: Router, private messageService : MessageService) { }
@@ -49,22 +48,21 @@ export class CommunityListComponent implements OnInit {
     this.router.navigate(['communities/create-edit']);
   }
 
-  openModal(community: Community){
-    this.display='block';
-    this.selectedCommunity = community; 
+  selectCommunity(community: Community) {
+    this.selectedCommunity = community;
   }
 
-  onCloseHandled(){
-    this.display='none';
-    this.selectedCommunity = null; 
+  modalCancel() {
+    this.selectedCommunity = null;
   }
+  
 
-  onDeleteHandled() {
+  deleteCommunity() {
     this.dataService.deleteCommunity(this.selectedCommunity.Id).subscribe(resp => {
         if(resp.ok) {
             //alert("Test " + this.selectedTestDTO.Name + " is successfully deleted!");
             this.getAllCommunities();
-            this.onCloseHandled();
+            this.modalCancel();
         }
       });
   }
@@ -76,9 +74,15 @@ export class CommunityListComponent implements OnInit {
   }
 
   getDoorways(community: Community) {
-    console.log("Get doorway is called....");
+    console.log("Get doorways is called....");
     this.messageService.selectCommunity(community);
     this.router.navigate(['doorways']);
+  }
+
+  getOwners(community: Community) {
+    console.log("Get owners is called....");
+    this.messageService.selectCommunity(community);
+    this.router.navigate(['owners']);
   }
 
 }
