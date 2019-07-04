@@ -48,5 +48,8 @@ export class CommunityCreateEditComponent implements OnInit {
     }
   }
 
+  back() {
+    this.router.navigate(['communities']);
+  }
 
 }
