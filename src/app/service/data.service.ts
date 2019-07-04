@@ -4,10 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Community } from '../model/community';
 import { BankAccount } from '../model/account';
 import { Doorway } from '../model/doorway';
+import { Owner } from '../model/owner';
+import { Apartment } from '../model/apartment';
 
 @Injectable()
 export class DataService {
-
+  
     private baseUrl: string = environment.API_URL;
 
     constructor(private httpClient: HttpClient) {
@@ -152,5 +154,89 @@ export class DataService {
             observe: 'response'
         });
     }
+
+    //************************************************************************************
+    //                                      OWNER
+    //************************************************************************************
+
+    getAllOwners(communityId: number) {
+        console.log("[Service] --> Get all OWNERS for community id: " + communityId);
+        let url: string;
+        url = this.baseUrl + '/communities/' + communityId + '/owners';
+        return this.httpClient.get(url, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
+            observe: 'response'
+        });
+    }
+
+    createOwner(communityId: number, owner: Owner) {
+        console.log("[Service] --> Create owner for community id: " + communityId);
+        const body = JSON.stringify(owner);
+        console.log("Body: " + body);
+        let createUrl: string;
+        createUrl = this.baseUrl + '/communities/' + communityId + '/owners';
+        return this.httpClient.post(createUrl, body, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
+            observe: 'response'
+        });
+    }
+      
+    updateOwner(communityId: number, owner: Owner) {
+        console.log("[Service] --> Update owner id: " + owner.Id);
+        const body = JSON.stringify(owner);
+        console.log("Body: " + body);
+        let updateUrl: string;
+        updateUrl = this.baseUrl + '/communities/' + communityId + '/owners/' + owner.Id;
+        return this.httpClient.put(updateUrl, body, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
+            observe: 'response'
+        });
+    }
+
+    deleteOwner(communityId: number, ownerId: number) {
+        console.log("[Service] --> Delete owner id: " + ownerId);
+        let deleteUrl: string;
+        deleteUrl = this.baseUrl + '/communities/' + communityId + '/owners/' + ownerId;
+        return this.httpClient.delete(deleteUrl, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accept', '*'),
+            observe: 'response'
+        });
+    }
+
+    getOwnersForApartment(apartmentId: number) {
+        console.log("[Service] --> Get all OWNERS for apartment id: " + apartmentId);
+        let url: string;
+        url = this.baseUrl + '/apartments/' + apartmentId + '/owners';
+        return this.httpClient.get(url, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
+            observe: 'response'
+        });
+      }
+
+    //************************************************************************************
+    //                                      APARTMENT
+    //************************************************************************************
+    getAllApartments(communityId:number, doorwayId: number) {
+        console.log("[Service] --> Get all apartments for community id: " + communityId + " and doorway id: " + doorwayId);
+        let url: string;
+        url = this.baseUrl + '/communities/' + communityId + '/doorways/' + doorwayId + '/apartments';
+        return this.httpClient.get(url, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
+            observe: 'response'
+        });
+    }
+
+    createApartment(communityId: number, doorwayId: number, apartment: Apartment) {
+        console.log("[Service] --> Create apartment for community id: " + communityId + " and doorway id: " + doorwayId);
+        const body = JSON.stringify(apartment);
+        console.log("Body: " + body);
+        let createUrl: string;
+        createUrl = this.baseUrl + '/communities/' + communityId + '/doorways/' + doorwayId + '/apartments';
+        return this.httpClient.post(createUrl, body, {
+            headers: new HttpHeaders().set('Content-Type', 'application/json').set('Accetp', '*'), 
+            observe: 'response'
+        });
+      }
+    
 
 }
