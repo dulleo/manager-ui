@@ -51,4 +51,8 @@ export class DoorwayCreateEditComponent implements OnInit {
     }
   }
 
+  back() {
+    this.router.navigate(['doorways']);
+  }
+
 }
