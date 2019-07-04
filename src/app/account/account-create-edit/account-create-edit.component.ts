@@ -52,4 +52,8 @@ export class AccountCreateEditComponent implements OnInit {
     }
   }
 
+  back() {
+    this.router.navigate(['accounts']);
+  }
+
 }
