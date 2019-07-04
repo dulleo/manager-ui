@@ -1,0 +1,8 @@
+hr {
+    border: 1px solid red;
+}
+
+.required {
+   color: red;
+   font-size: 10px;
+}
